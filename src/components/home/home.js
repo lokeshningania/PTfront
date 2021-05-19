@@ -153,7 +153,7 @@ class HomePage extends Component {
 
 
                         <div className="cards container">
-                            <h1 className="heading">Progress</h1> 
+                            <h1 className="heading">Progress Chart</h1> 
                             
                             
                 
