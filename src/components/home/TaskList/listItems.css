@@ -1,0 +1,108 @@
+.task-box{
+    
+    
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-right: 20px;
+    margin-left: 30px;
+    border-bottom: solid 2px rgba(0, 0, 0, 0.5);
+
+
+}
+.checked-tasktext{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.task-box-upper{
+    padding-top: 10px;
+    
+}
+
+.tasktext{
+    word-break: break-word;
+    margin-top: 0px;
+    margin-bottom: 0;
+    color: black;
+    
+}
+.task-box-btn{
+    margin-right: 5px;
+}
+.task-box-btns{
+    color: black;
+    text-align: end;
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+.taskcheck-btn{
+    color: green;
+}
+
+
+.task-box-middle{
+    padding-bottom: 10px;
+}
+
+.task-datetime{
+    color:black;
+    border-radius: 10px;
+    width: 120px;
+    text-decoration: none;
+    
+}
+.task-date{
+    color:black;
+    border-radius: 10px;
+    width: 120px;
+    text-decoration: none;
+    background-color:transparent ;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+}
+.task-date:hover{
+    cursor: pointer;
+}
+
+.task-frequency{
+    color:green;
+    text-align: end;
+}
+
+.task-box-lower{
+    padding-bottom: 10px;
+}
+
+.task-tags{
+    color:green;
+}
+
+.task-book{
+    color:black;
+    text-align: end;
+}
+
+
+.list{
+    font-size: 20px;
+    height: 80vh;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    background: rgb(255, 255, 255 , 0.5);
+    margin-left: 30px;
+    border-radius: 20px;
+    padding-top: 30px;
+}
+
+.datepick{
+    border-radius: 10px;
+    height: 30px;
+    width: 110px;
+    margin-right: 5px;
+    text-align: center;
+    color: black;
+    font-size: smaller;
+    border: solid 2px black;
+    
+}

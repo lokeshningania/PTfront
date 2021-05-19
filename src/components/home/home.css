@@ -1,0 +1,173 @@
+
+body{
+    background-image: url(../../assets/images/back2.jpg);
+    font-family: cursive;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.cards{
+    
+    height: 95vh;
+    
+    
+
+    
+}
+
+.task-section{
+    padding: 0px;
+    margin: 0px;
+}
+.taskinput{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.selected-task-list{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.heading {
+    font-family: cursive;
+    color: white;
+    text-align: center;
+    
+    height: 70px;
+}
+
+
+.task-input{
+    height: 30px;
+    width: 60%;
+    margin: 5%;
+    text-decoration: none;
+    padding-left: 5px;
+    border: black solid 1px;
+    color: black;
+    border-radius: 20px;
+    
+}
+
+
+
+input[type=submit] {
+      width: 20%;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #a15c38;
+      border: black solid 1px;
+      color: white;
+      
+  }
+
+
+  input[type=button] {
+    width: 80%;
+    margin-bottom: 20px;
+    display: block;
+    height: 30px;
+    border-radius: 20px;
+    border: black solid 1px;
+    color: white;
+    
+}
+
+.sidebar{
+    margin-top: 20px;
+    height: 100vh;
+    
+}
+
+.menu-element{
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+    
+}
+
+.menu-element:hover{
+    border-bottom: black solid 0.2px;
+    border-top: black solid 0.2px;
+}
+
+.element-item{
+    size: 20px;
+    padding: 0;
+    margin: 0%;
+
+}
+
+
+
+.menu-category{
+    margin-left: 10px;
+    
+}
+.menu-cat-items{
+    border-bottom: solid 2px lightgray;
+    border-top: solid 2px lightgray;
+}
+
+.menu-cat-items:hover{
+    border-bottom: 2px solid black;
+}
+
+.menu-cat-items:focus{
+    border-bottom: 2px solid black;
+}
+
+.profile-element{
+    height: 70px;
+    border-bottom: solid 2px black;
+    padding: 10px;
+    text-align: center;
+}
+
+.dp{
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+.task-list{
+    font-size: 20px;
+    height: 80vh;
+    
+}
+.tasktext{
+    word-break: break-word;
+    margin-top: 0px;
+    margin-bottom: 0;
+    
+}
+.task-box-btn{
+    margin-right: 5px;
+}
+.task-box-btns{
+    text-align: end;
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+.task-box{
+    
+    
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-right: 10px;
+    
+}
+
+div.scroll{
+    
+    overflow-y: auto;
+}
+
+ul
+{
+    list-style-type: none;
+}

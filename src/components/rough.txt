@@ -1,0 +1,54 @@
+{/* ---------------------------------------------------Side bar ---------------------------------------------------*/}
+                    <div className='col-sm-2 cards'>
+
+                            <div className=' row profile-element'>
+        
+                                <div className="col-sm-12">
+                                    <p>Lokesh yadav</p>
+                                </div>
+                    
+                               
+                            </div>
+
+                        <div className=" sidebar">
+                            <div onClick={this.onSubmit} className=' row menu-element'>
+                               <i className="fa fa-calendar-o col-sm-3 element-item" aria-hidden="true"></i>
+                               <p className='menu-name col-sm-6 element-item'>Today</p>
+                               <p className='count col-sm-3 element-item'>{this.state.items.length}</p>
+                            </div>
+
+                            <div className=' row menu-element'>
+                               <i className="fa fa-calendar-o col-sm-3 element-item" aria-hidden="true"></i>
+                               <p className='menu-name col-sm-6 element-item'>Tomorrow</p>
+                               <p className='count col-sm-3 element-item'>2</p>
+                            </div>
+
+                            <div className=' row menu-element'>
+                               <i className="fa fa-calendar-o col-sm-3 element-item" aria-hidden="true"></i>
+                               <p className='menu-name col-sm-6 element-item'>7 days</p>
+                               <p className='count col-sm-3 element-item'>4</p>
+                            </div>
+
+{/* --------------------------------------------------- Categories in sidebar  ---------------------------------------------------*/}
+                            <div className=' row menu-category'>
+                               <p onClick={this.onSubmit} className="col-sm-4 menu-cat-items">Lists</p>
+                               <p onClick={this.onSubmit} className="col-sm-4 menu-cat-items">Tags</p>
+                               <p onClick={this.onSubmit} className="col-sm-4 menu-cat-items">Custom</p>
+                            </div>
+
+{/* ---------------------------------------------------  categories in sidebar ends ---------------------------------------------------*/}
+                            <div className=' row category-show'>
+                                <p className="col-sm-1 "></p>
+                                <p  className="col-sm-8 ">college work</p>
+                                <p className="col-sm-2 ">2</p>
+                                <p className="col-sm-1 "></p>
+                            
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+{/* ---------------------------------------------------Side bar end ---------------------------------------------------*/}
