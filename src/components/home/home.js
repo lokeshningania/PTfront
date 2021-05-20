@@ -2,6 +2,7 @@ import React , {Component} from 'react'
 import './home.css'
 import FormDialog from './TaskInput/taskForm'
 import ListItems from './TaskList/listItems'
+import DateRange from './TaskList/daterangepicker'
 
 class HomePage extends Component {
     constructor(props){
@@ -124,10 +125,10 @@ class HomePage extends Component {
 
                         <div className="cards container">
                             <div className='row'>
-                                <div className="selected-task-list col-sm-6 ">
-                                    date
+                                <div className="selected-range col-sm-8 ">
+                                    <div className='rangepicker'><DateRange/></div> 
                                 </div>
-                                <div className="taskinput col-sm-6 ">
+                                <div className="taskinput col-sm-4 ">
                                     <FormDialog/>
                                 </div>
                                 
@@ -153,9 +154,22 @@ class HomePage extends Component {
 
 
                         <div className="cards container">
-                            <h1 className="heading">Progress Chart</h1> 
-                            
-                            
+                            <div className='row'>
+                                <div className='col-sm-12 heading'>
+                                    
+                                </div>
+                            </div>
+                            <div className='row'>
+                               
+                                <div className='col-sm-11 chart-area'>
+                                    
+                                </div>
+                                
+                                <div className='col-sm-1 '>
+                                    
+                                    </div>  
+                                
+                            </div>
                 
                         </div>
 

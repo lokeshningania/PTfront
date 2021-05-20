@@ -106,3 +106,22 @@
     border: solid 2px black;
     
 }
+
+.tags-in-task-box{
+    text-align: left;
+    border-bottom: solid 1px black;
+}
+
+.books-in-task-box{
+    text-align: right;
+    border-bottom: solid 1px black;
+}
+
+.tag{
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50px;
+    padding: 5px;
+    display: inline;
+}

@@ -8,7 +8,7 @@ import {
   
 } from '@material-ui/pickers';
 
-export default function MaterialUIPickers() {
+export default function DatePicker() {
   // The first commit of Material-UI
   const today = Date.now()
   const [selectedDate, setSelectedDate] = React.useState(new Date(today));
@@ -20,8 +20,8 @@ export default function MaterialUIPickers() {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="center">
-        
         <DateTimePicker
+            variant="inline"
             value={selectedDate} onChange={handleDateChange}
         />
       </Grid>

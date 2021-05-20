@@ -97,7 +97,25 @@ function ListItems(props){
 
 
     return(
-        <div className='list'>{listitems}</div>
+        <div className='list'>
+            <div className='row'>
+                <div className='col-sm-1'></div>
+                <div className='col-sm-5 tags-in-task-box'>
+                    Tags
+                </div>
+                <div className='col-sm-5 books-in-task-box'>Book</div>
+                <div className='col-sm-1'></div>
+                   
+                
+            </div>
+            <div className='row'>
+                <div className='col-sm-12 tasks-part'>
+                    {listitems}
+                    
+                </div>
+            </div>
+            
+        </div>
     )
 }
 
