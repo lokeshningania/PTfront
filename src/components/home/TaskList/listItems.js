@@ -1,7 +1,7 @@
 import React  from 'react'
 import './listItems.css'
 import DatePicker from "react-datepicker";
-import OutlinedChips from './tagarray'
+
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -63,7 +63,7 @@ function ListItems(props){
                             </div>
                             <div className='col-sm-4 task-box-btns'>
                                 <i className="fa fa-check-circle task-box-btn taskcheck-btn" aria-hidden="true"></i>
-                                <i className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
+                                <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
                                 
                             </div>
                             <div className='col-sm-1'></div>
