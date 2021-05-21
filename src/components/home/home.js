@@ -9,7 +9,7 @@ class HomePage extends Component {
         super(props)
         this.state = {
             items: [] ,
-            currenttask: {text: '' , schedule: new Date(2020 , 11 ,2) , key: Date.now() , tags:[] , book: '' , frequency:'' , status:"pending" ,credit: ''},
+            currenttask: {text: '' , schedule: new Date(2020 , 11 ,2) , key: Date.now() , tags:[] , book: '' , frequency:{repeat:'' , until:''} , status:"pending" ,credit: ''},
             tags:[],
             startdate: new Date(2021, 4, 1) ,
             changetime: 1,
@@ -19,6 +19,7 @@ class HomePage extends Component {
         }
         
         this.onSubmit = this.onSubmit.bind(this)
+        this.onFSubmit = this.onFSubmit.bind(this)
         this.deleteItem = this.deleteItem.bind(this)
         this.editTaskTime = this.editTaskTime.bind(this)
         this.checkTask = this.checkTask.bind(this)
@@ -37,29 +38,40 @@ class HomePage extends Component {
             adder: false 
         })
     }
+async onSubmit(taskvalue , taskcredit , repeat , until){
+    await this.setState({
+        currenttask:{text:taskvalue , credit:taskcredit , frequency:{repeat:repeat , until:until} , status:"pending" , key: Date.now()}
+    })
+    this.onFSubmit()
+    
+    
+    
+    console.log('working')
 
-    onSubmit(taskvalue , taskcredit){
-        this.setState({
-            currenttask:{text: taskvalue , status:'pending' , key:Date.now() , credit: taskcredit} 
-            
-        })
+}
+
+    onFSubmit(){
         if(this.state.currenttask !== ''){
             const newTask = this.state.currenttask
+            console.log(newTask)
             if(newTask.text !== ''){
                 const newlist = [newTask, ...this.state.items ]
                 this.setState({
                     items: newlist,
-                    currenttask: {text:''},
+                    currenttask: {text:'' , credit: '' },
                     changetime: this.state.changetime+1
                     
                 })
             }
             
-            
+        
         } 
-        
-        
+        console.log(this.state.items[0])
+
     }
+
+  
+  
 
  
      
@@ -92,7 +104,12 @@ class HomePage extends Component {
             
         const editedTasklist = this.state.items.map( item  => {
             if(item.key === key){
-                return {...item, status: 'completed'}
+                if(item.status === 'pending'){
+                    return {...item, status: 'completed'}
+                }
+                else{
+                    return {...item, status: 'pending'}
+                }
             }
             return item
         })
@@ -127,7 +144,7 @@ class HomePage extends Component {
                                     <div className='rangepicker'><DateRange/></div> 
                                 </div>
                                 <div className="taskinput col-sm-4 ">
-                                    <FormDialog  onsubmit={this.onSubmit}/>
+                                    <FormDialog onTaskText={this.onTaskText} onTaskCredit={this.onTaskCredit} onTaskFrequency={this.onTaskFrequency} onsubmit={this.onSubmit}/>
                                 </div>
                                 
                             </div>

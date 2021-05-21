@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import Button from '@material-ui/core/Button';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function FormDialog() {
+export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -43,8 +43,17 @@ export default function FormDialog() {
   };
 
   const handleClose = () => {
+    props.enterFUntil(Until)
     setOpen(false);
   };
+
+
+  const [Until , setUntil] = useState('')
+  const enterUntil = e => {
+    setUntil(e)
+   
+  }
+
 
   return (
     <div className={classes.root} >
@@ -62,7 +71,7 @@ export default function FormDialog() {
           <Paper className={classes.paper}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Repeat</InputLabel>
-                    <Select native defaultValue="" id="grouped-native-select">
+                    <Select native defaultValue={2} id="grouped-native-select">
                         <option aria-label="None" value="" />
                             <optgroup >
                                 <option value={1}>Every Day</option>
@@ -83,7 +92,7 @@ export default function FormDialog() {
           <Grid item xs={12} sm={12}>
             <Paper className={classes.paper}>
               Until !
-              <DatePicker  />
+              <DatePicker enterUntil={enterUntil} />
             </Paper>
           </Grid>
         </Grid> 

@@ -1,11 +1,33 @@
 import React  from 'react'
 import './listItems.css'
-import DatePicker from "react-datepicker";
+
+import DatePicker from '../TaskInput/datetimepicker'
 
 import "react-datepicker/dist/react-datepicker.css";
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      marginTop:theme.spacing(1),
+      display: 'block',
+      height:60,
+
+      
+      color: 'black',
+    },
+  }));
+  
 
 function ListItems(props){
+    const classes = useStyles();
     const items = props.items;
     
 
@@ -13,85 +35,136 @@ function ListItems(props){
     const listitems = items.map(item => {
         
         if(item.status === 'pending'){
-        return (<div className="container">
-                    <div className='task-box'>
-                        <div className= 'row task-box-upper' key={item.key}>
-                            <div className='col-sm-1'></div>
-                            <div className="col-sm-6 tasktext">
-                                <p>{item.text}</p>
-                            </div>
-                            <div className='col-sm-4 task-box-btns'>
+        return (
+            <div className='container'>
+                <div className='row'>
+                <div className='col-sm-1'></div>
+                <div className='col-sm-10 task-box'>
+            <div className={classes.root}>
+
+           
+               <Grid container spacing={0} direction= 'row' justify='center' >
+                    
+                    <Grid item xs={8} sm={8}>
+                        <Paper className={classes.paper} style={{overflowY: 'scroll' , wordWrap: 'break-word'}}>
+                        <div className= 'task-box-upper' key={item.key}>    
+                            <p>{item.text}</p>
+                         </div>
+                         </Paper> 
+                    </Grid>
+                    <Grid item xs={4} sm={4}>
+                    <Paper className={classes.paper}>
+                        <div className='task-box-btns'>
                                 <i onClick={()=> props.checkTask(item.key)} className="fa fa-check-circle task-box-btn" aria-hidden="true"></i>
                                 <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
+                                <i className='task-box-btn credit'>Credit - {item.credit}</i>
+                                </div>
                                 
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                        <div className= 'row task-box-middle'>
-                            <div className='col-sm-1'></div>
-                            <div className='col-sm-5 task-datetime'>
-                            <DatePicker selected={item.schedule} onChange={date => props.editTaskTime(item.key , date) } className='task-date' dateFormat='dd-MM-yyyy'/>
-                            </div>
-                            <div className='col-sm-5 task-frequency'>
-                                Frequency
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                        <div className= 'row task-box-lower'>
-                            <div className='col-sm-1'></div>
-                            <div className='col-sm-5 task-tags'>
-                             Tags
-                            </div>
-                            <div className='col-sm-5 task-book'>
-                                Book
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                    </div>
-                
+                        
+                                </Paper> 
+                    </Grid>
+                </Grid>
+                            
+                <Grid container spacing={0} direction= 'row' justify='flex-start' >     
+                    <Grid item xs={6} sm={6}>
+                    <Paper className={classes.paper}>
+                                <DatePicker variant='outlined'/>
+                                </Paper> 
+                    </Grid>
+                    <Grid item xs={6} sm={6}>  
+                    <Paper className={classes.paper}>  
+                                {item.frequency.repeat}
+                                </Paper> 
+
+                     </Grid> 
+                </Grid>   
+
+                <Grid container spacing={0} direction= 'row' justify='flex-start' >     
+                    <Grid item xs={6} sm={6}>
+                    <Paper className={classes.paper}>
+                                Tags
+                                </Paper> 
+                    </Grid>
+                    <Grid item xs={6} sm={6}>   
+                    <Paper className={classes.paper}>
+                               Taskbook
+                               </Paper> 
+                     </Grid> 
+                </Grid>             
+                            
+                </div>  
+                 
+                </div>
+                <div className='col-sm-1'></div> 
+                </div>
+                    
+               
                 </div>
                 )
         }
         return (
-            <div className="container">
-                    <div className='checked-task-box task-box'>
-                        <div className= 'row  task-box-upper' key={item.key}>
-                            <div className='col-sm-1'></div>
-                            <div className="col-sm-6 checked-tasktext">
-                                <p><s>{item.text}</s></p>
-                            
-                            </div>
-                            <div className='col-sm-4 task-box-btns'>
-                                <i className="fa fa-check-circle task-box-btn taskcheck-btn" aria-hidden="true"></i>
-                                <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
-                                
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                        <div className= 'row task-box-middle'>
-                            <div className='col-sm-1'></div>
-                            <div className='col-sm-5 task-datetime'>
-                                {item.schedule}
-                            </div>
-                            <div className='col-sm-5 task-frequency'>
-                                Frequency
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                        <div className= 'row task-box-lower'>
-                            <div className='col-sm-1'></div>
-                            <div className='col-sm-5 task-tags'>
-                            <p>Tags</p>
-                            </div>
-                            <div className='col-sm-5 task-book'>
-                                Book
-                            </div>
-                            <div className='col-sm-1'></div>
-                        </div>
-                    </div>
-                
-                </div>
+            <div className='container'>
+                <div className='row'>
+                <div className='col-sm-1'></div>
+                <div className='col-sm-10 checked task-box'>
+            <div className={classes.root}>
 
+           
+               <Grid container spacing={0} direction= 'row' justify='center' >
+                    
+                    <Grid item xs={8} sm={8}>
+                        <Paper className={classes.paper} style={{overflowY: 'scroll' , wordWrap: 'break-word'}}>
+                        <div className= 'task-box-upper' key={item.key}>    
+                            <p><s>{item.text}</s></p>
+                         </div>
+                         </Paper> 
+                    </Grid>
+                    <Grid item xs={4} sm={4}>
+                    <Paper className={classes.paper}>
+                    <div className='task-box-btns'>
+                                <i onClick={()=> props.checkTask(item.key)} className="fa fa-check-circle task-box-btn checked-icon" aria-hidden="true"></i>
+                                <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
+                                <i className='task-box-btn credit'>Credit - {item.credit}</i>
+                                </div>
+                                </Paper> 
+                    </Grid>
+                </Grid>
+                            
+                <Grid container spacing={0} direction= 'row' justify='flex-start' >     
+                    <Grid item xs={6} sm={6}>
+                    <Paper className={classes.paper}>
+                                <DatePicker variant='outlined'/>
+                                </Paper> 
+                    </Grid>
+                    <Grid item xs={6} sm={6}>  
+                    <Paper className={classes.paper}>  
+                                Frequency
+                                </Paper> 
+
+                     </Grid> 
+                </Grid>   
+
+                <Grid container spacing={0} direction= 'row' justify='flex-start' >     
+                    <Grid item xs={6} sm={6}>
+                    <Paper className={classes.paper}>
+                                Tags
+                                </Paper> 
+                    </Grid>
+                    <Grid item xs={6} sm={6}>   
+                    <Paper className={classes.paper}>
+                               Taskbook
+                               </Paper> 
+                     </Grid> 
+                </Grid>             
+                            
+                </div>  
+                 
+                </div>
+                <div className='col-sm-1'></div> 
+                </div>
+                    
+               
+                </div>
         )
     })
 

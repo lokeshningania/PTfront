@@ -33,12 +33,19 @@ export default function FormDialog(props) {
   const dispast = true;
   const enterTask = e => {
     setTaskValue(e.target.value)
-    console.log(e.target.value)
   }
   const [TaskCredit, setTaskCredit] = useState('');
   const enterTaskCredit = e => {
-    setTaskCredit(e.target.value)
-    console.log(e.target.value)
+    setTaskCredit(e.target.value)  
+  }
+
+  const [Repeat , setRepeat] = useState('EveryDay')
+  const enterFrequency = e => {
+    setRepeat(e.target.value)
+  }
+  const [FUntil , setFUntil] = useState('')
+  const enterFUntil = e => {
+    setFUntil(e)
   }
   const classes = useStyles();
 
@@ -47,8 +54,12 @@ export default function FormDialog(props) {
   };
 
   const handleClose = () => {
-    setOpen(false);
-    props.onsubmit(TaskValue , TaskCredit)
+    if(TaskValue && TaskCredit){
+      props.onsubmit(TaskValue , TaskCredit , Repeat , FUntil)
+      setOpen(false);
+    }
+    
+    
     
   };
   
@@ -73,6 +84,7 @@ export default function FormDialog(props) {
                 type="text"
                 fullWidth
                 onChange={enterTask}
+                required
                 
               />
             </Paper>
@@ -93,6 +105,7 @@ export default function FormDialog(props) {
                 type="number"
                 InputProps={{ inputProps: { min: 1, max: 10 } }}
                 onChange={enterTaskCredit}
+                required
               />
             </Paper>
           </Grid>
@@ -102,7 +115,7 @@ export default function FormDialog(props) {
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
               If this is repetitive task then select frequency and duration of task !
-              <FrequencyMenu  />
+              <FrequencyMenu enterFrequency={enterFrequency} enterFUntil={enterFUntil} />
             </Paper>
           </Grid>
         
@@ -110,7 +123,7 @@ export default function FormDialog(props) {
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
               Select Date and time for your task to do !
-              <DatePicker dispast={dispast}/>
+              <DatePicker dispast={dispast} />
             </Paper>
           </Grid>
         </Grid> 
@@ -122,7 +135,7 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" type="submit">
+          <Button onClick={handleClose} color="primary" >
             Add
           </Button>
         </DialogActions>

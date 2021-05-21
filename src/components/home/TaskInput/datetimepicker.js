@@ -14,6 +14,7 @@ export default function DatePicker(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date(today));
 
   const handleDateChange = (date) => {
+    props.enterUntil(date)
     setSelectedDate(date);
   };
 
@@ -24,6 +25,11 @@ export default function DatePicker(props) {
             variant="inline"
             value={selectedDate} onChange={handleDateChange}
             disablePast={props.dispast}
+            InputProps={{
+              disableUnderline: true,
+             }}
+             fullWidth
+             style={{paddingLeft: 30}}
         />
       </Grid>
     </MuiPickersUtilsProvider>
