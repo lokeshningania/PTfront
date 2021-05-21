@@ -1,7 +1,7 @@
 import React  from 'react'
 import './listItems.css'
 import DatePicker from "react-datepicker";
-
+import OutlinedChips from './tagarray'
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -30,7 +30,7 @@ function ListItems(props){
                         <div className= 'row task-box-middle'>
                             <div className='col-sm-1'></div>
                             <div className='col-sm-5 task-datetime'>
-                            <DatePicker selected={item.schedule} onChange={date => props.editTask(item.key , date) } className='task-date' dateFormat='dd-MM-yyyy'/>
+                            <DatePicker selected={item.schedule} onChange={date => props.editTaskTime(item.key , date) } className='task-date' dateFormat='dd-MM-yyyy'/>
                             </div>
                             <div className='col-sm-5 task-frequency'>
                                 Frequency
@@ -40,7 +40,7 @@ function ListItems(props){
                         <div className= 'row task-box-lower'>
                             <div className='col-sm-1'></div>
                             <div className='col-sm-5 task-tags'>
-                            <p>Tags</p>
+                             Tags
                             </div>
                             <div className='col-sm-5 task-book'>
                                 Book
@@ -62,8 +62,8 @@ function ListItems(props){
                             
                             </div>
                             <div className='col-sm-4 task-box-btns'>
-                                <i onClick={()=> props.checkTask(item.key)} className="fa fa-check-circle task-box-btn taskcheck-btn" aria-hidden="true"></i>
-                                <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
+                                <i className="fa fa-check-circle task-box-btn taskcheck-btn" aria-hidden="true"></i>
+                                <i className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
                                 
                             </div>
                             <div className='col-sm-1'></div>
@@ -101,7 +101,7 @@ function ListItems(props){
             <div className='row'>
                 <div className='col-sm-1'></div>
                 <div className='col-sm-5 tags-in-task-box'>
-                    Tags
+                Tags
                 </div>
                 <div className='col-sm-5 books-in-task-box'>Book</div>
                 <div className='col-sm-1'></div>

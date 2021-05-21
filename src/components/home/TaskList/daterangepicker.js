@@ -26,7 +26,7 @@ export default function MaterialUIPickers() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justify="left">
+      <Grid container justify="flex-start">
         
         <DateTimePicker
             value={selectedStartDate} onChange={handleStartDateChange}

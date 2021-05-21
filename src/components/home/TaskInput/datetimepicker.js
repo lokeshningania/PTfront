@@ -8,7 +8,7 @@ import {
   
 } from '@material-ui/pickers';
 
-export default function DatePicker() {
+export default function DatePicker(props) {
   // The first commit of Material-UI
   const today = Date.now()
   const [selectedDate, setSelectedDate] = React.useState(new Date(today));
@@ -23,6 +23,7 @@ export default function DatePicker() {
         <DateTimePicker
             variant="inline"
             value={selectedDate} onChange={handleDateChange}
+            disablePast={props.dispast}
         />
       </Grid>
     </MuiPickersUtilsProvider>

@@ -9,7 +9,7 @@ class HomePage extends Component {
         super(props)
         this.state = {
             items: [] ,
-            currenttask: {text: '' , schedule: new Date(2020 , 11 ,2) , key: '' , tags:[] , book: ''},
+            currenttask: {text: '' , schedule: new Date(2020 , 11 ,2) , key: Date.now() , tags:[] , book: '' , frequency:'' , status:"pending" ,credit: ''},
             tags:[],
             startdate: new Date(2021, 4, 1) ,
             changetime: 1,
@@ -17,10 +17,10 @@ class HomePage extends Component {
             adder: false
 
         }
-        this.changetask = this.changetask.bind(this)
+        
         this.onSubmit = this.onSubmit.bind(this)
         this.deleteItem = this.deleteItem.bind(this)
-        this.editTask = this.editTask.bind(this)
+        this.editTaskTime = this.editTaskTime.bind(this)
         this.checkTask = this.checkTask.bind(this)
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
@@ -38,8 +38,11 @@ class HomePage extends Component {
         })
     }
 
-    onSubmit(event){
-        event.preventDefault()
+    onSubmit(taskvalue , taskcredit){
+        this.setState({
+            currenttask:{text: taskvalue , status:'pending' , key:Date.now() , credit: taskcredit} 
+            
+        })
         if(this.state.currenttask !== ''){
             const newTask = this.state.currenttask
             if(newTask.text !== ''){
@@ -58,12 +61,7 @@ class HomePage extends Component {
         
     }
 
-    changetask(event){
-        this.setState({
-            currenttask: {text: event.target.value , schedule: Date.now() , key: this.state.changetime , tags:[] , book: '' , status:'pending'},
-            
-        })
-    }
+ 
      
     deleteItem(key){
         const filtereditems = this.state.items.filter(task => 
@@ -74,7 +72,7 @@ class HomePage extends Component {
             })
     }
    
-    editTask(key, date) {
+    editTaskTime(key, date) {
             
             const editedTasklist = this.state.items.map( item  => {
                 if(item.key === key){
@@ -129,14 +127,14 @@ class HomePage extends Component {
                                     <div className='rangepicker'><DateRange/></div> 
                                 </div>
                                 <div className="taskinput col-sm-4 ">
-                                    <FormDialog/>
+                                    <FormDialog  onsubmit={this.onSubmit}/>
                                 </div>
                                 
                             </div>
                             <div className='row'>
                                 <div className="scroll col-sm-12">
          {/* --------------------------------------------------- List of items ---------------------------------------------------*/}
-                                    <ListItems items={this.state.items} deleteItem={this.deleteItem} editTask={this.editTask} checkTask={this.checkTask}/>                    
+                                    <ListItems items={this.state.items} deleteItem={this.deleteItem} editTaskTime={this.editTaskTime} checkTask={this.checkTask}/>                    
          {/* ---------------------------------------------------list ends ---------------------------------------------------*/}
                                 </div>
                             </div>  
@@ -162,7 +160,7 @@ class HomePage extends Component {
                             <div className='row'>
                                
                                 <div className='col-sm-11 chart-area'>
-                                    
+                                   
                                 </div>
                                 
                                 <div className='col-sm-1 '>

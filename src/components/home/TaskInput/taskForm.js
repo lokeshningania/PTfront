@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -27,8 +27,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function FormDialog(props) {
+  const [open, setOpen] = useState(false);
+  const [TaskValue, setTaskValue] = useState('');
+  const dispast = true;
+  const enterTask = e => {
+    setTaskValue(e.target.value)
+    console.log(e.target.value)
+  }
+  const [TaskCredit, setTaskCredit] = useState('');
+  const enterTaskCredit = e => {
+    setTaskCredit(e.target.value)
+    console.log(e.target.value)
+  }
   const classes = useStyles();
 
   const handleClickOpen = () => {
@@ -37,7 +48,10 @@ export default function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+    props.onsubmit(TaskValue , TaskCredit)
+    
   };
+  
 
   return (
     <div className={classes.root} >
@@ -49,7 +63,7 @@ export default function FormDialog() {
         
         
         <DialogContent >
-        <Grid container spacing={3} direction= 'row' justify='space-between'>
+        <Grid container spacing={3} direction= 'row' justify='flex-start' >
           <Grid item xs={12} sm={12}>
             <Paper className={classes.paper}>
               <TextField
@@ -58,12 +72,18 @@ export default function FormDialog() {
                 label="Enter Task"
                 type="text"
                 fullWidth
-
+                onChange={enterTask}
+                
               />
             </Paper>
           </Grid>
         </Grid>
-        <Grid container spacing={3} direction= 'row' justify='space-between'>
+        <Grid container spacing={3} direction= 'row' justify='flex-start'>
+        <Grid item xs={6} sm={6}>
+            
+            Task Credit is the number representing the task importance and task's doability like hard easy intermediate !
+            Choose is According to your personal ability .
+        </Grid>
           <Grid item xs={6} sm={6}>
             <Paper className={classes.paper}>
               <TextField
@@ -72,26 +92,16 @@ export default function FormDialog() {
                 label="Task Credits"
                 type="number"
                 InputProps={{ inputProps: { min: 1, max: 10 } }}
-            
+                onChange={enterTaskCredit}
               />
             </Paper>
           </Grid>
-          <Grid item xs={6} sm={6}>
-            <Paper className={classes.paper}>
-              <TextField
-                fullWidth
-                id="name"
-                label="Task Credits"
-                type="number"
-                InputProps={{ inputProps: { min: 1, max: 10 } }}
-            
-              />
-            </Paper>
-          </Grid>
+          
         </Grid>
-        <Grid container spacing={3} direction= 'row' justify='space-between'>  
+        <Grid container spacing={3} direction= 'row' justify='flex-start' >  
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
+              If this is repetitive task then select frequency and duration of task !
               <FrequencyMenu  />
             </Paper>
           </Grid>
@@ -99,7 +109,8 @@ export default function FormDialog() {
           
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
-              <DatePicker  />
+              Select Date and time for your task to do !
+              <DatePicker dispast={dispast}/>
             </Paper>
           </Grid>
         </Grid> 
@@ -111,7 +122,7 @@ export default function FormDialog() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" type="submit">
             Add
           </Button>
         </DialogActions>
