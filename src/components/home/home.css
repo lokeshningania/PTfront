@@ -1,6 +1,7 @@
 
 body{
-    background-image: url(../../assets/images/back14.jpg);
+    /*background-image: url(../../assets/images/back4.jpg);*/
+    background-color: rgb(209, 207, 207);
     font-family: cursive;
     background-repeat: no-repeat;
     background-size: cover;
@@ -33,8 +34,8 @@ body{
     padding-left: 70px;
 }
 .rangepicker{
-    border-radius: 10px;
-    background: rgb(255, 255, 255 , 0.5);
+    
+    
     padding-left: 10px;
     
 }
@@ -185,6 +186,6 @@ ul
     background: rgb(255, 255, 255 , 0.5);
     border-radius: 20px;
     padding-top: 30px;
-    margin-top: 25px;
+    margin-top: 40px;
     
 }

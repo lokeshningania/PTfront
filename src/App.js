@@ -6,7 +6,7 @@ import HomePage from './components/home/home';
 function App() {
   return (
     <Router>
-      <SideBar/>
+      
       <HomePage/>
      
     </Router>

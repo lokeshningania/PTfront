@@ -3,6 +3,8 @@ import './home.css'
 import FormDialog from './TaskInput/taskForm'
 import ListItems from './TaskList/listItems'
 import DateRange from './TaskList/daterangepicker'
+import SideBar from '../navigation/SideBar';
+import {BrowserRouter as Router } from 'react-router-dom'
 
 class HomePage extends Component {
     constructor(props){
@@ -14,7 +16,11 @@ class HomePage extends Component {
             startdate: new Date(2021, 4, 1) ,
             changetime: 1,
             today: 0,
-            adder: false
+            adder: false,
+            startrange: new Date(),
+            endrange:new Date(),
+            taskbooks:[{key: 1 , bookname:'book1' },{key: 2 , bookname:'book2' },{key: 3 , bookname:'book3' }], 
+            book:''
 
         }
         
@@ -25,6 +31,22 @@ class HomePage extends Component {
         this.checkTask = this.checkTask.bind(this)
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
+        this.addTaskBook = this.addTaskBook.bind(this)
+        this.getStartDateRange = this.getStartDateRange.bind(this)
+        this.getEndDateRange = this.getEndDateRange.bind(this)
+    }
+
+    getStartDateRange(sdate ){
+        this.setState({
+            startrange:sdate 
+           
+        })
+    }
+    getEndDateRange(edate){
+        this.setState({
+            
+            endrange:edate
+        })
     }
     
     onOpenModal = () => {
@@ -33,14 +55,24 @@ class HomePage extends Component {
         })
     }
 
+    addTaskBook(e){
+        const newBook = e.target.value
+        if(newBook !== ''){
+            const newlist = [newBook, ...this.state.taskbooks]
+            this.setState({
+                taskbooks: newlist,
+            })
+        }
+    }
+
     onCloseModal = () => {
         this.setState({
             adder: false 
         })
     }
-async onSubmit(taskvalue , taskcredit , repeat , until){
+async onSubmit(taskvalue , schedule ,taskcredit , repeat , until ){
     await this.setState({
-        currenttask:{text:taskvalue , credit:taskcredit , frequency:{repeat:repeat , until:until} , status:"pending" , key: Date.now()}
+        currenttask:{text:taskvalue , credit:taskcredit , frequency:{repeat:repeat , until:until} , status:"pending" , key: Date.now() , schedule: schedule}
     })
     this.onFSubmit()
     
@@ -124,8 +156,11 @@ async onSubmit(taskvalue , taskcredit , repeat , until){
         
 
         return(
+            
 
+            
             <div className="Container">
+                <SideBar taskbooks={this.state.taskbooks}/>
                 <div className="row">
 
 
@@ -141,7 +176,7 @@ async onSubmit(taskvalue , taskcredit , repeat , until){
                         <div className="cards container">
                             <div className='row'>
                                 <div className="selected-range col-sm-8 ">
-                                    <div className='rangepicker'><DateRange/></div> 
+                                    <div className='rangepicker'><DateRange getStartDateRange={this.getStartDateRange} getEndDateRange={this.getEndDateRange}/></div> 
                                 </div>
                                 <div className="taskinput col-sm-4 ">
                                     <FormDialog onTaskText={this.onTaskText} onTaskCredit={this.onTaskCredit} onTaskFrequency={this.onTaskFrequency} onsubmit={this.onSubmit}/>
@@ -151,7 +186,7 @@ async onSubmit(taskvalue , taskcredit , repeat , until){
                             <div className='row'>
                                 <div className="scroll col-sm-12">
          {/* --------------------------------------------------- List of items ---------------------------------------------------*/}
-                                    <ListItems items={this.state.items} deleteItem={this.deleteItem} editTaskTime={this.editTaskTime} checkTask={this.checkTask}/>                    
+                                    <ListItems items={this.state.items} deleteItem={this.deleteItem} editTaskTime={this.editTaskTime} checkTask={this.checkTask} startrange={this.state.startrange} endrange={this.state.endrange}/>                    
          {/* ---------------------------------------------------list ends ---------------------------------------------------*/}
                                 </div>
                             </div>  
@@ -171,7 +206,7 @@ async onSubmit(taskvalue , taskcredit , repeat , until){
                         <div className="cards container">
                             <div className='row'>
                                 <div className='col-sm-12 heading'>
-                                    
+                                {this.state.startrange.date}
                                 </div>
                             </div>
                             <div className='row'>

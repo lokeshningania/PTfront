@@ -16,8 +16,8 @@
 }
 .checked{
     
-    background-color: #51713a;
-    background-image: linear-gradient(314deg, #51713a 0%, #000e21 74%);
+    background: skyblue;
+    
 
 }
 .checked-icon{
@@ -143,4 +143,9 @@
     width: 50px;
     padding: 5px;
     display: inline;
+}
+
+.tagarray{
+    overflow-x: scroll;
+    overflow-y: hidden;
 }

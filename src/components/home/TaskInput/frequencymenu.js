@@ -53,7 +53,13 @@ export default function FormDialog(props) {
     setUntil(e)
    
   }
-
+  const [Repeat , setRepeat] = useState('')
+  const enterRepeat = e => {
+    setRepeat(e.target.value)
+    props.enterFRepeat(e.target.value)
+    console.log(Repeat)
+   
+  }
 
   return (
     <div className={classes.root} >
@@ -71,7 +77,7 @@ export default function FormDialog(props) {
           <Paper className={classes.paper}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Repeat</InputLabel>
-                    <Select native defaultValue={2} id="grouped-native-select">
+                    <Select native defaultValue={1} id="grouped-native-select" onChange={enterRepeat }>
                         <option aria-label="None" value="" />
                             <optgroup >
                                 <option value={1}>Every Day</option>

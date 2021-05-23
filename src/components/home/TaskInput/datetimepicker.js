@@ -10,11 +10,11 @@ import {
 
 export default function DatePicker(props) {
   // The first commit of Material-UI
-  const today = Date.now()
-  const [selectedDate, setSelectedDate] = React.useState(new Date(today));
+  
+  const [selectedDate, setSelectedDate] = React.useState(props.selected);
 
   const handleDateChange = (date) => {
-    props.enterUntil(date)
+    props.enterUntil(props.key , date)
     setSelectedDate(date);
   };
 

@@ -1,8 +1,8 @@
-import React  from 'react'
+import React , {useState} from 'react'
 import './listItems.css'
 
 import DatePicker from '../TaskInput/datetimepicker'
-
+import ChipsArray from './tagarray'
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -29,10 +29,23 @@ const useStyles = makeStyles((theme) => ({
 function ListItems(props){
     const classes = useStyles();
     const items = props.items;
+    const startrange = props.startrange;
+    const endrange = props.endrange;
+
+    
+        const enterTaskTime = (key , date) => {
+            props.editTaskTime(key , date)
+        }
     
 
 
     const listitems = items.map(item => {
+
+        
+        if (item.schedule.getDate() <= endrange.getDate()
+                && item.schedule.getDate() >= startrange.getDate()) {
+                
+            
         
         if(item.status === 'pending'){
         return (
@@ -68,7 +81,7 @@ function ListItems(props){
                 <Grid container spacing={0} direction= 'row' justify='flex-start' >     
                     <Grid item xs={6} sm={6}>
                     <Paper className={classes.paper}>
-                                <DatePicker variant='outlined'/>
+                                <DatePicker variant='outlined' selected={item.schedule} key={item.key} enterUntil={enterTaskTime}/>
                                 </Paper> 
                     </Grid>
                     <Grid item xs={6} sm={6}>  
@@ -82,7 +95,9 @@ function ListItems(props){
                 <Grid container spacing={0} direction= 'row' justify='flex-start' >     
                     <Grid item xs={6} sm={6}>
                     <Paper className={classes.paper}>
-                                Tags
+                            <div className='tagarray'>
+                                <ChipsArray/>
+                            </div>
                                 </Paper> 
                     </Grid>
                     <Grid item xs={6} sm={6}>   
@@ -166,21 +181,12 @@ function ListItems(props){
                
                 </div>
         )
+                }
     })
 
 
     return(
         <div className='list'>
-            <div className='row'>
-                <div className='col-sm-1'></div>
-                <div className='col-sm-5 tags-in-task-box'>
-                Tags
-                </div>
-                <div className='col-sm-5 books-in-task-box'>Book</div>
-                <div className='col-sm-1'></div>
-                   
-                
-            </div>
             <div className='row'>
                 <div className='col-sm-12 tasks-part'>
                     {listitems}

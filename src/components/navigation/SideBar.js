@@ -41,7 +41,7 @@ const SideBarNav = styled.nav`
 const SideBarWrap = styled.div`
     width: 100%;
 `
-const SideBar = ({item}) => {
+const SideBar = () => {
 
     const [sidebar , setSidebar] = useState(false)
 
