@@ -51,7 +51,7 @@ export default function FormDialog(props) {
     setTaskSchedule(e)  
   }
 
-  const [FRepeat , setFRepeat] = useState('EveryDay')
+  const [FRepeat , setFRepeat] = useState(1)
   const enterFRepeat = e => {
     setFRepeat(e)
   }

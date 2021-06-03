@@ -17,6 +17,9 @@ body{
     
 }
 
+.motivation{
+    text-align: end;
+}
 .task-section{
     padding: 0px;
     margin: 0px;

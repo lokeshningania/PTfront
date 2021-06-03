@@ -1,8 +1,8 @@
-import React , {useState} from 'react'
+import React  from 'react'
 import './listItems.css'
 
 import DatePicker from '../TaskInput/datetimepicker'
-import ChipsArray from './tagarray'
+
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -31,7 +31,7 @@ function ListItems(props){
     const items = props.items;
     const startrange = props.startrange;
     const endrange = props.endrange;
-
+    const freqmenu = ['Once','Everday','Every Alternate day','Every Week On this Day','On this Day of Every Month','On this Date of Every Month','Select Multiple days a week']
     
         const enterTaskTime = (key , date) => {
             props.editTaskTime(key , date)
@@ -40,7 +40,13 @@ function ListItems(props){
 
 
     const listitems = items.map(item => {
-
+        var date = item.schedule.getDate()+'/'+parseInt(item.schedule.getMonth()+1)+'/'+item.schedule.getFullYear()
+        var fdate = ''
+        var until = ''
+         if(item.frequency.until!==''){
+             fdate = item.frequency.until.getDate()+'/'+parseInt(item.frequency.until.getMonth()+1)+'/'+item.frequency.until.getFullYear()
+             until = 'Until ' + fdate
+         }
         
         if (item.schedule.getDate() <= endrange.getDate()
                 && item.schedule.getDate() >= startrange.getDate()) {
@@ -70,7 +76,7 @@ function ListItems(props){
                         <div className='task-box-btns'>
                                 <i onClick={()=> props.checkTask(item.key)} className="fa fa-check-circle task-box-btn" aria-hidden="true"></i>
                                 <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
-                                <i className='task-box-btn credit'>Credit - {item.credit}</i>
+                                <i className='task-box-btn credit'>Credit- {item.credit}</i>
                                 </div>
                                 
                         
@@ -85,26 +91,17 @@ function ListItems(props){
                                 </Paper> 
                     </Grid>
                     <Grid item xs={6} sm={6}>  
-                    <Paper className={classes.paper}>  
-                                {item.frequency.repeat}
+                    <Paper className={classes.paper} style={{overflowY: 'scroll' , wordWrap: 'break-word'}}>  
+                                {freqmenu[item.frequency.repeat-1]}<br></br>
+                                {until}
                                 </Paper> 
 
                      </Grid> 
                 </Grid>   
 
                 <Grid container spacing={0} direction= 'row' justify='flex-start' >     
-                    <Grid item xs={6} sm={6}>
-                    <Paper className={classes.paper}>
-                            <div className='tagarray'>
-                                <ChipsArray/>
-                            </div>
-                                </Paper> 
-                    </Grid>
-                    <Grid item xs={6} sm={6}>   
-                    <Paper className={classes.paper}>
-                               Taskbook
-                               </Paper> 
-                     </Grid> 
+                    
+                     
                 </Grid>             
                             
                 </div>  
@@ -139,7 +136,7 @@ function ListItems(props){
                     <div className='task-box-btns'>
                                 <i onClick={()=> props.checkTask(item.key)} className="fa fa-check-circle task-box-btn checked-icon" aria-hidden="true"></i>
                                 <i onClick={()=> props.deleteItem(item.key)} className="fa fa-trash-o task-box-btn" aria-hidden="true"></i>
-                                <i className='task-box-btn credit'>Credit - {item.credit}</i>
+                                <i className='task-box-btn credit'>Earned-{item.credit}</i>
                                 </div>
                                 </Paper> 
                     </Grid>
@@ -148,28 +145,20 @@ function ListItems(props){
                 <Grid container spacing={0} direction= 'row' justify='flex-start' >     
                     <Grid item xs={6} sm={6}>
                     <Paper className={classes.paper}>
-                                <DatePicker variant='outlined'/>
+                                {date}
                                 </Paper> 
                     </Grid>
                     <Grid item xs={6} sm={6}>  
                     <Paper className={classes.paper}>  
-                                Frequency
+                                Task Done !<span role="img" aria-label="thumb">👍</span>
                                 </Paper> 
 
                      </Grid> 
                 </Grid>   
 
                 <Grid container spacing={0} direction= 'row' justify='flex-start' >     
-                    <Grid item xs={6} sm={6}>
-                    <Paper className={classes.paper}>
-                                Tags
-                                </Paper> 
-                    </Grid>
-                    <Grid item xs={6} sm={6}>   
-                    <Paper className={classes.paper}>
-                               Taskbook
-                               </Paper> 
-                     </Grid> 
+                    
+                    
                 </Grid>             
                             
                 </div>  
@@ -182,6 +171,8 @@ function ListItems(props){
                 </div>
         )
                 }
+                
+
     })
 
 

@@ -4,14 +4,15 @@ import FormDialog from './TaskInput/taskForm'
 import ListItems from './TaskList/listItems'
 import DateRange from './TaskList/daterangepicker'
 import SideBar from '../navigation/SideBar';
-import {BrowserRouter as Router } from 'react-router-dom'
+import Progress from './Progress/progress'
+import Motivation from './motivation'
 
 class HomePage extends Component {
     constructor(props){
         super(props)
         this.state = {
             items: [] ,
-            currenttask: {text: '' , schedule: new Date(2020 , 11 ,2) , key: Date.now() , tags:[] , book: '' , frequency:{repeat:'' , until:''} , status:"pending" ,credit: ''},
+            currenttask: {text: '' , schedule: new Date() , key: Date.now() , tags:[] , book: '' , frequency:{repeat:'' , until:''} , status:"pending" ,credit: ''},
             tags:[],
             startdate: new Date(2021, 4, 1) ,
             changetime: 1,
@@ -20,7 +21,9 @@ class HomePage extends Component {
             startrange: new Date(),
             endrange:new Date(),
             taskbooks:[{key: 1 , bookname:'book1' },{key: 2 , bookname:'book2' },{key: 3 , bookname:'book3' }], 
-            book:''
+            book:'',
+            allcredits:[],
+            todaycredits:{date: new Date(), total: 0 , achieved: 0}
 
         }
         
@@ -136,6 +139,10 @@ async onSubmit(taskvalue , schedule ,taskcredit , repeat , until ){
             
         const editedTasklist = this.state.items.map( item  => {
             if(item.key === key){
+                const credit = this.state.todaycredits.achieved+parseInt(item.credit)
+                this.setState({
+                    todaycredits:{achieved: credit}
+                })
                 if(item.status === 'pending'){
                     return {...item, status: 'completed'}
                 }
@@ -145,11 +152,12 @@ async onSubmit(taskvalue , schedule ,taskcredit , repeat , until ){
             }
             return item
         })
-          
+           
            this.setState({
                items: editedTasklist
            })
            console.log(editedTasklist)
+           console.log(this.state.todaycredits.achieved)
   }
 
     render(){
@@ -205,13 +213,14 @@ async onSubmit(taskvalue , schedule ,taskcredit , repeat , until ){
 
                         <div className="cards container">
                             <div className='row'>
-                                <div className='col-sm-12 heading'>
-                                {this.state.startrange.date}
+                                <div className='col-sm-12 motivation'>
+                                <Motivation />
                                 </div>
                             </div>
                             <div className='row'>
                                
                                 <div className='col-sm-11 chart-area'>
+                                    <Progress/>
                                    
                                 </div>
                                 

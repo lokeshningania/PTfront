@@ -80,13 +80,14 @@ export default function FormDialog(props) {
                     <Select native defaultValue={1} id="grouped-native-select" onChange={enterRepeat }>
                         <option aria-label="None" value="" />
                             <optgroup >
-                                <option value={1}>Every Day</option>
-                                <option value={2}>Every Alternate Day</option>
-                                <option value={3}>Every Week On this Day</option>
-                                <option value={4}>On this Day of Every Month</option>
-                                <option value={5}>On this Date of Every Month</option>
-                                <option value={6}>Select Multiple days a week</option>
-                                <option value={7}>Custom Selection</option>
+                                <option value={1}>Once</option>
+                                <option value={2}>Everday</option>
+                                <option value={3}>Every Alternate Day</option>
+                                <option value={4}>Every Week On this Day</option>
+                                <option value={5}>On this Day of Every Month</option>
+                                <option value={6}>On this Date of Every Month</option>
+                                <option value={7}>Select Multiple days a week</option>
+                                <option value={8}>Custom Selection</option>
                             </optgroup>
                     </Select>
             </FormControl>

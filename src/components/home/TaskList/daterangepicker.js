@@ -7,7 +7,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import './daterangepicker.css'
 import {
   MuiPickersUtilsProvider,
-  DateTimePicker,
+
   DatePicker
   
 } from '@material-ui/pickers';

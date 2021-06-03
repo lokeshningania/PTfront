@@ -1,0 +1,28 @@
+.container{
+    margin-top: 10vh;
+    width: 50%;
+    
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.inputerrors{
+    color: red;
+    font-size: small;
+   margin: 15px;
+    
+
+}
+
+.form-control{
+   margin: 0; 
+}
+
+#submitbtn {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 90%;
+    
+
+}

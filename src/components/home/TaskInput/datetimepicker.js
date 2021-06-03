@@ -14,7 +14,7 @@ export default function DatePicker(props) {
   const [selectedDate, setSelectedDate] = React.useState(props.selected);
 
   const handleDateChange = (date) => {
-    props.enterUntil(props.key , date)
+    props.enterUntil( date)
     setSelectedDate(date);
   };
 
